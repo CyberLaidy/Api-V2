@@ -44,6 +44,14 @@ Vue.use(VueRouter)
       return import('../views/Create.vue')
     }
   },
+  {
+    path: '/details',
+    name: 'details',
+    to: 'details',
+    component: function () {
+      return import('../views/Details.vue')
+    }
+  },
 ] 
 
 
@@ -51,7 +59,7 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
-  linkActiveClass: 'vue-active-link'
+  linkActiveClass: 'router-link-active'
 })
 
 export default router

@@ -13,6 +13,9 @@
         <router-link to="/episodes" style="text-decoration: none;">Episodes</router-link>
       </v-tab>
       <v-tab>
+        <router-link to="/details" style="text-decoration: none;">Details</router-link>
+      </v-tab>
+      <v-tab>
         <router-link to="/about" style="text-decoration: none;">About</router-link>
       </v-tab>
       <v-tab>
@@ -35,7 +38,6 @@ import { RouterLink, RouterView } from "vue-router";
 
 export default {
     name: "Nav",
-    comments: {},
     components: { RouterView }
 }
 
@@ -43,7 +45,7 @@ export default {
 
 <style>
 
-.menu .vue-active-link{
+.menu .router-link-active{
   color: white;
   background-color: palevioletred;
   padding: 10px;
@@ -55,6 +57,7 @@ export default {
 }
 .menu{
   height: 60px;
+  font-family: system-ui;
 }
 
 </style>

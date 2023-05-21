@@ -3,6 +3,7 @@
   <div id="app">
     <Header />
     <Nav />
+    <BtnDialog />
     <RouterView />
 
     <Footer />
@@ -20,6 +21,7 @@ import Nav from './components/Nav.vue';
 import Footer from './components/Footer.vue';
 import Episodes from './views/Episodes.vue';
 import { RouterView } from 'vue-router';
+import BtnDialog from './components/BtnDialog.vue';
 
 
 export default {
@@ -30,17 +32,41 @@ export default {
     HomeView,
     Episodes,
     Footer,
-    RouterView
+    RouterView,
+    BtnDialog
 },
 };
 
 </script>
+
+
 <style>
-.ver-mas{
-    background-color: aquamarine;
-    margin: 10px;
-    width: 200px;
-    height: 30px;
-    border-radius: 20px;
-}
+   .ver-mas{
+      background-color: palevioletred;
+      color: white;
+      margin: 10px;
+      width: 150px;
+      height: 30px;
+      border-radius: 20px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+   .ver-mas:hover{
+      background-color: slateblue;
+    }
+    .texto-nombre-card{
+      color: black;
+      padding-bottom: 5px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .texto-nombre-episode{
+      color: black;
+      padding-bottom: 5px;
+      font-family: monospace;
+      font-size: large;
+    }
+    .texto-nombre-episode:hover{
+      color: white;
+      padding-bottom: 5px;
+      font-family: monospace;
+    }
 </style>

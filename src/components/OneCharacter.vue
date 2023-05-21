@@ -13,16 +13,20 @@
                   height="350"
                   max-width="350"
                   style="display: contents; ">
-                <div  v-for="character of characters" v-bind:key="character.id">
-                <div class="card-style" >
-                  <div class="card-header">
-                    <img v-bind:src="character.image" v-bind:alt="character.name" style="border-radius: 50px; width: 180px;">
+                <div v-for="character of characters" v-bind:key="character.id">
+                <div class="card-style-details" >
+                  <div class="card-header-details">
+                      <v-card-text class="texto-nombre-card my-4 text-center text-h6">Id: {{ character.id }}</v-card-text>
+                    <img v-bind:src="character.image" v-bind:alt="character.id" style="border-radius: 50px; width: 180px;">
                   </div>
-                    <div class="card-content" style="display: flex; flex-direction: column;">
-                    <v-card-text class="texto-nombre-card my-4 text-center text-h6">{{ character.name }}</v-card-text>
-                    <button class="ver-mas" v-on:click="detail()">Detalles</button>
-                    <!-- <v-card-text class="my-4 text-center text-h6">{{ character.id }}</v-card-text> -->
-                    <!-- <button class="ver-mas">Ver más</button> -->
+                    <div class="card-content-details" style="display: flex; flex-direction: column;">
+                    <v-card-text class="texto-nombre-details my-4 text-center text-h6">Nombre: {{ character.name }}</v-card-text>
+                    <v-card-text class="texto-nombre-details my-4 text-center text-h6">Status: {{ character.status }}</v-card-text>
+                    <v-card-text class="texto-nombre-details my-4 text-center text-h6">Specie: {{ character.species }}</v-card-text>
+                    <v-card-text class="texto-nombre-details my-4 text-center text-h6">Gender: {{ character.gender }}</v-card-text>
+                    <v-card-text class="texto-nombre-details my-4 text-center text-h6">Origin: {{ character.origin.name }}</v-card-text>
+                    <v-card-text class="texto-nombre-details my-4 text-center text-h6">Location: {{ character.location.name }}</v-card-text>
+
                     </div>
                 </div>
               </div>
@@ -59,11 +63,11 @@
   //import Vue from 'vue';
   
   export default {
-    name: 'Cards',
+    name: 'OneCharacter',
     props: [''],
     data: function(){
       return{
-        characters: [],
+        characters: ['id'],
         page: 1,
         pages: 1
       }
@@ -85,15 +89,24 @@
           //console.log(res.data.info)
           this.pages= res.data.info.pages;
           console.log(res.data)
+          
+          
         })
         .catch(err => {
           console.log("error "+err)
         })
+        
       },
       changePage(page){
         this.page = (page <= 0 || page > this.pages) ? this.page : page
         this.fetch();
       },
+      cantidad(count){
+        this.count = count
+        this.fetch();
+      }
+
+
     },
   };
   
@@ -134,10 +147,10 @@
       padding-bottom: 5px;
       padding-top: 10px;
     }
-    .card-header img{
+    .card-header-details img{
       width: 170px;
     }
-    .card-style{
+    .card-style-details{
       display: flex; 
       flex-direction: column; 
       align-items: center; 
@@ -147,15 +160,22 @@
       border-radius: 30px; 
       padding: 5px; 
       width: 220px;
-      height: 90%;
+      height: 95%;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
 
     }
-    .card-style:hover{
-      border: solid 3pt paleturquoise; 
-      background: paleturquoise; 
+    .card-style-details:hover{
+      border: solid 3pt rosybrown; 
+      background: rosybrown; 
+      color: white;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 20px;
 
     }
- 
+    .card__text {
+
+    }
   </style>
   <!--
     #f6e5cb
