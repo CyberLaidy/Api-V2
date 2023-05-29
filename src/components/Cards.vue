@@ -1,6 +1,12 @@
-
+<!--CARDs Personaje Home-->
 <template>
     <div>
+      <!--Buscador home-->
+      <div class="control">
+        <input type="text" class="input" v-model="search" placeholder="Inserta un nombre" v-on:keyup.enter="searchData">
+        <button class="btnBuscar " v-on:click="searchData">Buscar</button>
+      </div>
+      <!--card-->
       <div style="margin-top: 30px;">
           <v-row class="vrow" v-on="fetch">
             <v-col cols="12" style="display: contents;">
@@ -13,14 +19,14 @@
                   height="350"
                   max-width="350"
                   style="display: contents; ">
-                <div  v-for="character of characters" v-bind:key="character.id">
+                <div v-for="character of characters" v-bind:key="character.id"> 
                 <div class="card-style" >
                   <div class="card-header">
                     <img v-bind:src="character.image" v-bind:alt="character.name" style="border-radius: 50px; width: 180px;">
                   </div>
                     <div class="card-content" style="display: flex; flex-direction: column;">
                     <v-card-text class="texto-nombre-card my-4 text-center text-h6">{{ character.name }}</v-card-text>
-                    <button class="ver-mas" v-on:click="detail()">Detalles</button>
+                    <button class="ver-mas" v-on:click="showMore(character.id)">Detalles</button>
                     <!-- <v-card-text class="my-4 text-center text-h6">{{ character.id }}</v-card-text> -->
                     <!-- <button class="ver-mas">Ver más</button> -->
                     </div>
@@ -51,39 +57,53 @@
 
   <script>
   //importamos las librerias 
-  import axios from 'axios';
+  import store from '@/store';
+import axios from 'axios';
+import { mapGetters } from 'vuex';
   
-  //importamos los componentes
- 
-  
-  //import Vue from 'vue';
+
+  //localStorage.setItem = (id, 'id'); 
+
   
   export default {
     name: 'Cards',
-    props: [''],
+    props: ['characters'],
+    characters: {
+      id: 'number',
+      name: 'string',
+      status: 'string',
+      species: 'string',
+      type: 'string',
+      gender: 'string',
+      location: 'object',
+    },
     data: function(){
       return{
         characters: [],
         page: 1,
-        pages: 1
+        pages: 1,
+        search: '',
       }
     },
-    //mostrará personajes cuando la web carge
+    //mostrará personajes cuando la web carga
     created(){
       this.fetch()
     },
     methods: {
       fetch(){
         const params = {
-            page: this.page
+          //paginamos
+          page: this.page,
+          //buscamos por nombre
+          name: this.search
         }
-
         let result = axios
         .get("https://rickandmortyapi.com/api/character", {params})
         .then(res =>{
           this.characters = res.data.results;
           //console.log(res.data.info)
           this.pages= res.data.info.pages;
+          //this.ids= res.data.results.id;
           console.log(res.data)
         })
         .catch(err => {
@@ -94,6 +114,12 @@
         this.page = (page <= 0 || page > this.pages) ? this.page : page
         this.fetch();
       },
+      //Creamos una funcion para el buscador
+      searchData(){
+        this.page = 1
+        this.fetch();
+      }, 
+
     },
   };
   
@@ -107,7 +133,7 @@
     }
     .pagination-link{
       padding: 15px;
-      background-color: pink;
+      background-color: rgb(171, 171, 171);
       color: white;
       margin: 5px;
     }
@@ -142,8 +168,8 @@
       flex-direction: column; 
       align-items: center; 
       margin: 20px; 
-      border: solid 3pt rgb(243, 229, 245); 
-      background: rgb(243, 229, 245); 
+      border: solid 3pt rgb(0, 34, 112); 
+      background: rgb(206, 252, 255); 
       border-radius: 30px; 
       padding: 5px; 
       width: 220px;
@@ -151,16 +177,41 @@
 
     }
     .card-style:hover{
-      border: solid 3pt paleturquoise; 
-      background: paleturquoise; 
-
+      border: solid 3pt rgb(255, 255, 255); 
+      background: rgba(0, 255, 102, 0.761); 
+    
     }
- 
+    .v-card__text:hover{
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .search {
+      display: flex;
+      justify-content: center;
+      /* background: aqua; */
+    }
+    .search input {
+        background: aqua;
+        height: 50px;
+        border: solid black;
+        padding: 10px;
+    }
+    button.btnBuscar {
+      background: greenyellow;
+      border: solid 1pt;
+      padding: 13px;
+      border-radius: 0px 10px 10px 0px;
+  }
+    input.input {
+      background: aliceblue;
+      border: solid black 1pt;
+      padding-left: 10px;
+      border-radius: 10px 0px 0px 10px;
+    }
+    .control {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+  
   </style>
-  <!--
-    #f6e5cb
-  #ffc5c1
-  #f99fa9
-  #aa6581
-  #503850
--->

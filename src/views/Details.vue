@@ -1,18 +1,19 @@
 <template>
     <div class="home">
     <p class="titulo-home">Character details</p> 
-    <OneCharacter />
+    <AllCharacter />
   </div>
 </template>
 
 <script>
-import OneCharacter from '@/components/OneCharacter.vue';
+import AllCharacter from '@/components/AllCharacter.vue';
 
 
 export default {
     Name: 'Details',
+    props: '',
     components: {
-        OneCharacter,
+        AllCharacter,
     }
 }
 </script>

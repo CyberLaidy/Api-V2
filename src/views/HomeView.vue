@@ -27,7 +27,7 @@ export default {
     justify-content: center;
     margin-top: 10px;
     font-size: x-large;
-    color: palevioletred;
+    color: rgb(0, 34, 112);
     font-family: system-ui;
     font-weight: 700;
     text-transform: capitalize;

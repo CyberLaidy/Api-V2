@@ -1,6 +1,7 @@
-
+<!--PAGINA DE DETALLES DE CADA PERSONAJE-->
 <template>
     <div>
+        <character :character="character" v-for="character in characters" :key="character.id"></character>
       <div style="margin-top: 30px;">
           <v-row class="vrow" v-on="fetch">
             <v-col cols="12" style="display: contents;">
@@ -16,10 +17,10 @@
                 <div v-for="character of characters" v-bind:key="character.id">
                 <div class="card-style-details" >
                   <div class="card-header-details">
-                      <v-card-text class="texto-nombre-card my-4 text-center text-h6">Id: {{ character.id }}</v-card-text>
-                    <img v-bind:src="character.image" v-bind:alt="character.id" style="border-radius: 50px; width: 180px;">
+                    <v-card-text class="texto-nombre-card my-4 text-center text-h6">ID: {{ character.id }}</v-card-text>
+                    <img v-bind:src="character.image" v-bind:alt="character.id" style="border-radius: 50%; width: 300px;">
                   </div>
-                    <div class="card-content-details" style="display: flex; flex-direction: column;">
+                  <div class="card-content-details" style="display: flex; flex-direction: column;">
                     <v-card-text class="texto-nombre-details my-4 text-center text-h6">Nombre: {{ character.name }}</v-card-text>
                     <v-card-text class="texto-nombre-details my-4 text-center text-h6">Status: {{ character.status }}</v-card-text>
                     <v-card-text class="texto-nombre-details my-4 text-center text-h6">Specie: {{ character.species }}</v-card-text>
@@ -56,18 +57,25 @@
   <script>
   //importamos las librerias 
   import axios from 'axios';
+import { mapActions, mapState } from 'vuex';
+  //import { mapGetters } from 'vuex';
   
-  //importamos los componentes
- 
-  
-  //import Vue from 'vue';
   
   export default {
-    name: 'OneCharacter',
-    props: [''],
+    name: 'AllCharacter',
+    props: ['characters'],
+    characters: {
+      id: 'number',
+      name: 'string',
+      status: 'string',
+      species: 'string',
+      type: 'string',
+      gender: 'string',
+      location: 'object',
+    },
     data: function(){
       return{
-        characters: ['id'],
+        characters: [''],
         page: 1,
         pages: 1
       }
@@ -81,33 +89,35 @@
         const params = {
             page: this.page
         }
-
+        //peticion http
         let result = axios
         .get("https://rickandmortyapi.com/api/character", {params})
         .then(res =>{
           this.characters = res.data.results;
-          //console.log(res.data.info)
           this.pages= res.data.info.pages;
           console.log(res.data)
-          
-          
+
         })
+        
         .catch(err => {
           console.log("error "+err)
         })
         
       },
+      /*Paginacion*/
       changePage(page){
         this.page = (page <= 0 || page > this.pages) ? this.page : page
-        this.fetch();
+        this.fetch(); 
+
       },
+      /*Candtidad Personajes*/
       cantidad(count){
         this.count = count
         this.fetch();
-      }
-
-
+      },
+  
     },
+
   };
   
   </script>
@@ -155,27 +165,26 @@
       flex-direction: column; 
       align-items: center; 
       margin: 20px; 
-      border: solid 3pt rgb(243, 229, 245); 
-      background: rgb(243, 229, 245); 
+      border: solid 5pt rgb(19, 42, 133); 
+      background: rgb(224 255 249); 
       border-radius: 30px; 
       padding: 5px; 
-      width: 220px;
+      width: 350px;
       height: 95%;
+      margin: 20px;
       font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
 
     }
     .card-style-details:hover{
-      border: solid 3pt rosybrown; 
-      background: rosybrown; 
+      border: solid 10pt rgb(0, 255, 204); 
+      background: rgb(88, 126, 173); 
       color: white;
       font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      font-size: 20px;
+
 
     }
-    .card__text {
 
-    }
   </style>
   <!--
     #f6e5cb

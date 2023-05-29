@@ -45,11 +45,27 @@ Vue.use(VueRouter)
     }
   },
   {
+    path: '/edit',
+    name: 'edit',
+    to: 'edit',
+    component: function () {
+      return import('../views/Edit.vue')
+    }
+  },
+  {
     path: '/details',
     name: 'details',
     to: 'details',
     component: function () {
       return import('../views/Details.vue')
+    }
+  },
+  {
+    path: '/one',
+    name: 'one',
+    to: 'one',
+    component: function () {
+      return import('../components/ShowOne.vue')
     }
   },
 ] 

@@ -95,9 +95,6 @@
         this.page = (page <= 0 || page > this.pages) ? this.page : page
         this.fetch();
       },
-      detail(){
-        
-      }
     },
   };
   
@@ -111,7 +108,7 @@
     }
     .pagination-link{
       padding: 15px;
-      background-color: pink;
+      background-color: rgb(40, 115, 158);
       color: white;
       margin: 5px;
     }
@@ -144,8 +141,8 @@
     .card-style-episode{
         display: flex;
         margin: 20px;
-        border: solid 3pt rgb(243, 229, 245);
-        background: rgb(243, 229, 245);
+        border: solid 3pt rgb(125, 125, 125);
+        background: gainsboro;
         border-radius: 30px;
         padding: 5px;
         width: 300px;

@@ -1,4 +1,5 @@
-<template>
+<!--Boton Pulsame - Modal No funciona-->
+<!-- <template>
     <div class="text-center">
       <v-dialog
         v-model="dialog"
@@ -42,4 +43,4 @@
       }
     },
   }
-</script>
+</script> -->

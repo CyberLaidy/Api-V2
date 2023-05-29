@@ -1,12 +1,12 @@
 
 <template>
   <div id="app">
-    <Header />
-    <Nav />
+    <Header></Header>
+    <Nav></Nav>
     <BtnDialog />
     <RouterView />
 
-    <Footer />
+    <Footer></Footer>
   </div>
 </template>
 
@@ -33,7 +33,8 @@ export default {
     Episodes,
     Footer,
     RouterView,
-    BtnDialog
+    BtnDialog,
+
 },
 };
 
@@ -42,16 +43,17 @@ export default {
 
 <style>
    .ver-mas{
-      background-color: palevioletred;
-      color: white;
+      background-color: rgb(42, 77, 126);
+      color: rgb(255, 255, 255);
       margin: 10px;
       width: 150px;
       height: 30px;
       border-radius: 20px;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
-   .ver-mas:hover{
-      background-color: slateblue;
+    .ver-mas:hover{
+     background-color: rgb(255, 255, 255);
+      color: black;
     }
     .texto-nombre-card{
       color: black;
