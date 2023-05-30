@@ -44,6 +44,30 @@ Vue.use(VueRouter)
       return import('../views/Create.vue')
     }
   },
+  {
+    path: '/edit',
+    name: 'edit',
+    to: 'edit',
+    component: function () {
+      return import('../views/Edit.vue')
+    }
+  },
+  {
+    path: '/details',
+    name: 'details',
+    to: 'details',
+    component: function () {
+      return import('../views/Details.vue')
+    }
+  },
+  {
+    path: '/one',
+    name: 'one',
+    to: 'one',
+    component: function () {
+      return import('../components/ShowOne.vue')
+    }
+  },
 ] 
 
 
@@ -51,7 +75,7 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
-  linkActiveClass: 'vue-active-link'
+  linkActiveClass: 'router-link-active'
 })
 
 export default router

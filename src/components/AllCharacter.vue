@@ -1,12 +1,7 @@
-<!--CARDs Personaje Home-->
+<!--PAGINA DE DETALLES DE CADA PERSONAJE-->
 <template>
     <div>
-      <!--Buscador home-->
-      <div class="control">
-        <input type="text" class="input" v-model="search" placeholder="Inserta un nombre" v-on:keyup.enter="searchData">
-        <button class="btnBuscar " v-on:click="searchData">Buscar</button>
-      </div>
-      <!--card-->
+        <character :character="character" v-for="character in characters" :key="character.id"></character>
       <div style="margin-top: 30px;">
           <v-row class="vrow" v-on="fetch">
             <v-col cols="12" style="display: contents;">
@@ -19,16 +14,20 @@
                   height="350"
                   max-width="350"
                   style="display: contents; ">
-                <div v-for="character of characters" v-bind:key="character.id"> 
-                <div class="card-style" >
-                  <div class="card-header">
-                    <img v-bind:src="character.image" v-bind:alt="character.name" style="border-radius: 50px; width: 180px;">
+                <div v-for="character of characters" v-bind:key="character.id">
+                <div class="card-style-details" >
+                  <div class="card-header-details">
+                    <v-card-text class="texto-nombre-card my-4 text-center text-h6">ID: {{ character.id }}</v-card-text>
+                    <img v-bind:src="character.image" v-bind:alt="character.id" style="border-radius: 50%; width: 300px;">
                   </div>
-                    <div class="card-content" style="display: flex; flex-direction: column;">
-                    <v-card-text class="texto-nombre-card my-4 text-center text-h6">{{ character.name }}</v-card-text>
-                    <button class="ver-mas" v-on:click="showMore(character.id)">Detalles</button>
-                    <!-- <v-card-text class="my-4 text-center text-h6">{{ character.id }}</v-card-text> -->
-                    <!-- <button class="ver-mas">Ver más</button> -->
+                  <div class="card-content-details" style="display: flex; flex-direction: column;">
+                    <v-card-text class="texto-nombre-details my-4 text-center text-h6">Nombre: {{ character.name }}</v-card-text>
+                    <v-card-text class="texto-nombre-details my-4 text-center text-h6">Status: {{ character.status }}</v-card-text>
+                    <v-card-text class="texto-nombre-details my-4 text-center text-h6">Specie: {{ character.species }}</v-card-text>
+                    <v-card-text class="texto-nombre-details my-4 text-center text-h6">Gender: {{ character.gender }}</v-card-text>
+                    <v-card-text class="texto-nombre-details my-4 text-center text-h6">Origin: {{ character.origin.name }}</v-card-text>
+                    <v-card-text class="texto-nombre-details my-4 text-center text-h6">Location: {{ character.location.name }}</v-card-text>
+
                     </div>
                 </div>
               </div>
@@ -57,16 +56,13 @@
 
   <script>
   //importamos las librerias 
-  import store from '@/store';
-import axios from 'axios';
-import { mapGetters } from 'vuex';
+  import axios from 'axios';
+import { mapActions, mapState } from 'vuex';
+  //import { mapGetters } from 'vuex';
   
-
-  //localStorage.setItem = (id, 'id'); 
-
   
   export default {
-    name: 'Cards',
+    name: 'AllCharacter',
     props: ['characters'],
     characters: {
       id: 'number',
@@ -79,48 +75,49 @@ import { mapGetters } from 'vuex';
     },
     data: function(){
       return{
-        characters: [],
+        characters: [''],
         page: 1,
-        pages: 1,
-        search: '',
+        pages: 1
       }
     },
-    //mostrará personajes cuando la web carga
+    //mostrará personajes cuando la web carge
     created(){
       this.fetch()
     },
     methods: {
       fetch(){
         const params = {
-          //paginamos
-          page: this.page,
-          //buscamos por nombre
-          name: this.search
+            page: this.page
         }
+        //peticion http
         let result = axios
         .get("https://rickandmortyapi.com/api/character", {params})
         .then(res =>{
           this.characters = res.data.results;
-          //console.log(res.data.info)
           this.pages= res.data.info.pages;
-          //this.ids= res.data.results.id;
           console.log(res.data)
+
         })
+        
         .catch(err => {
           console.log("error "+err)
         })
+        
       },
+      /*Paginacion*/
       changePage(page){
         this.page = (page <= 0 || page > this.pages) ? this.page : page
+        this.fetch(); 
+
+      },
+      /*Candtidad Personajes*/
+      cantidad(count){
+        this.count = count
         this.fetch();
       },
-      //Creamos una funcion para el buscador
-      searchData(){
-        this.page = 1
-        this.fetch();
-      }, 
-
+  
     },
+
   };
   
   </script>
@@ -133,7 +130,7 @@ import { mapGetters } from 'vuex';
     }
     .pagination-link{
       padding: 15px;
-      background-color: rgb(171, 171, 171);
+      background-color: pink;
       color: white;
       margin: 5px;
     }
@@ -160,58 +157,39 @@ import { mapGetters } from 'vuex';
       padding-bottom: 5px;
       padding-top: 10px;
     }
-    .card-header img{
+    .card-header-details img{
       width: 170px;
     }
-    .card-style{
+    .card-style-details{
       display: flex; 
       flex-direction: column; 
       align-items: center; 
       margin: 20px; 
-      border: solid 3pt rgb(0, 34, 112); 
-      background: rgb(206, 252, 255); 
+      border: solid 5pt rgb(19, 42, 133); 
+      background: rgb(224 255 249); 
       border-radius: 30px; 
       padding: 5px; 
-      width: 220px;
-      height: 90%;
+      width: 350px;
+      height: 95%;
+      margin: 20px;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
 
     }
-    .card-style:hover{
-      border: solid 3pt rgb(255, 255, 255); 
-      background: rgba(0, 255, 102, 0.761); 
-    
+    .card-style-details:hover{
+      border: solid 10pt rgb(0, 255, 204); 
+      background: rgb(88, 126, 173); 
+      color: white;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+
     }
-    .v-card__text:hover{
-      font-size: 20px;
-      font-weight: 600;
-    }
-    .search {
-      display: flex;
-      justify-content: center;
-      /* background: aqua; */
-    }
-    .search input {
-        background: aqua;
-        height: 50px;
-        border: solid black;
-        padding: 10px;
-    }
-    button.btnBuscar {
-      background: greenyellow;
-      border: solid 1pt;
-      padding: 13px;
-      border-radius: 0px 10px 10px 0px;
-  }
-    input.input {
-      background: aliceblue;
-      border: solid black 1pt;
-      padding-left: 10px;
-      border-radius: 10px 0px 0px 10px;
-    }
-    .control {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-    }
-  
+
   </style>
+  <!--
+    #f6e5cb
+  #ffc5c1
+  #f99fa9
+  #aa6581
+  #503850
+-->

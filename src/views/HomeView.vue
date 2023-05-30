@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Pagina Home</h1>
+    <p class="titulo-home">Character List</p>
     <Cards />
   </div>
 </template>
@@ -19,3 +19,18 @@ export default {
   }
 }
 </script>
+
+<style>
+  .titulo-home{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    font-size: x-large;
+    color: rgb(0, 34, 112);
+    font-family: system-ui;
+    font-weight: 700;
+    text-transform: capitalize;
+    
+  }
+</style>
