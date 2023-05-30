@@ -9,6 +9,7 @@
       Type: {{ this.$store.getters.characterType }}
       Gender: {{ this.$store.getters.characterGender }}
       Location: {{ this.$store.getters.characterLocation }}
+      Nombre: {{ this.$store.state.nombre }}
 
   </div>
   </template>
@@ -16,7 +17,8 @@
   <script>
   //importamos las librerias 
   import axios from 'axios';
-  
+  import { mapState } from "vuex"
+
   //importamos los componentes
  
   
@@ -24,32 +26,24 @@
   
   export default {
     name: 'ShowOne',
-    props: ['characters'],
-    characters: {
-      id: 'number',
-      name: 'string',
-      status: 'string',
-      species: 'string',
-      type: 'string',
-      gender: 'string',
-      location: 'object',
-    },
-      
     data: function(){
       return{
         character: [''],
       }
     },
-
+    methods: {},
     computed: {
-      computed: {
         characterId(){
           return this.$store.getters.characterId
         },
         characterName(){
           return this.$store.getters.characterName
-        }
-      }
+        },
+        allUser(){
+          return `${this.character}`
+        },
+        ...mapState(['userList'])
+
     }
 
     };

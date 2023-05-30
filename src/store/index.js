@@ -1,75 +1,67 @@
 import Vue from 'vue'
-//import { set } from 'vue/types/umd'
+import store from '@/store';
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-
-/*Como los valores son fijos, create otro componente y usa los valores de vuex*/
 export default new Vuex.Store({
   state: {
-    characters: [''],
-    character: {
-      id: '2020',
-      name: 'Sandra',
-      status: 'string',
-      species: 'string',
-      type: 'string',
-      gender: 'string',
-      location: 'object',
-    },
-    search: {
-      name: 'string'
-    }
-
-  },
-  getters: {
-    AllCharactersApi (state){
-      return state.characters
-    },
-    OneCharactersApi (state){
-      return state.character
-    },
-    searchData(state){
-      return state.search
-    },
-    /**Character */
-    characterName (state){
-      return state.character.name
-    },
-    characterId (state){
-      return state.character.id
-    },
-    characterStatus (state){
-      return state.character.status
-    },
-    characterSpecies (state){
-      return state.character.species
-    },
-    characterType (state){
-      return state.character.tyoe
-    },
-    characterGender (state){
-      return state.character.gender
-    },
-    characterLocation (state){
-      return state.character.location
-    },
-    
+    characters: [],
+    episodes: [],
+    locations: []
   },
   mutations: {
-
-    
+    initUser(state, users){
+      state.characters = users
+    }, 
+    initTvEpisode(state, tvepisode){
+      state.episodes = tvepisode
+    },
+    getTvEpisode(state, tvEpisode){
+      state.episodes = tvEpisode
+    },
+    initWorld(state, world){
+      state.locations = world
+    }
   },
   actions: {
-    changePage(page){
-      this.page = (page <= 0 || page > this.pages) ? this.page : page
-      this.fetch();
-      
+    fetchTvEpisode({ commit }){
+      fetch('https://rickandmortyapi.com/api/episode')
+      .then(response => response.json())
+      .then(response => {
+        this.episodes = response.data.results;
+        this.pages= response.data.info.pages;
+        console.log(`data ${response.data}`)
+        
+        commit('initTvEpisode', response.data)
+      })
     },
-
-
+    fetchUsers({ commit }){
+      fetch('https://rickandmortyapi.com/api/character')
+      .then(response => response.json())
+      .then(response => {
+        this.characters = response.data.results;
+          this.pages= response.data.info.pages;
+          console.log(`data ${response.data}`)
+          
+        commit('initUsers', response.data)
+      })
+    },
+    fetchWorld({ commit }){
+      fetch('https://rickandmortyapi.com/api/location')
+      .then(response => response.json())
+      .then(response => {
+        this.location = response.data.results;
+        this.pages= response.data.info.pages;
+        console.log(`data ${response.data}`)
+        
+      commit('initWorld', response.data)
+      })
+    },
   },
   modules: {
-  }
-})
+    /* actions,
+    state,
+    mutations */
+  },
+});

@@ -22,7 +22,7 @@ import Footer from './components/Footer.vue';
 import Episodes from './views/Episodes.vue';
 import { RouterView } from 'vue-router';
 import BtnDialog from './components/BtnDialog.vue';
-
+import store from '@/store';
 
 export default {
   name: 'App',
@@ -35,7 +35,7 @@ export default {
     RouterView,
     BtnDialog,
 
-},
+  },
 };
 
 </script>
