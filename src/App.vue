@@ -5,7 +5,6 @@
     <Nav></Nav>
     <BtnDialog />
     <RouterView />
-
     <Footer></Footer>
   </div>
 </template>
@@ -34,6 +33,7 @@ export default {
     Footer,
     RouterView,
     BtnDialog,
+    
 
   },
 };

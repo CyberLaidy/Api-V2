@@ -1,16 +1,24 @@
 <!--Mostrar solo un personaje-->
 <template>
   <div>
-      <h3>Pasamos los valores de vuex a un character</h3>
-      Id: {{ this.$store.getters.characterId }}
-      Name: {{ this.$store.getters.characterName }}
-      Status: {{ this.$store.getters.characterStatus }}
-      Specie: {{ this.$store.getters.characterSpecies }}
-      Type: {{ this.$store.getters.characterType }}
-      Gender: {{ this.$store.getters.characterGender }}
-      Location: {{ this.$store.getters.characterLocation }}
-      Nombre: {{ this.$store.state.nombre }}
 
+
+      <h3>Amigos </h3>
+      <input type="text" v-model="character" style="border: 1pt red solid;">
+      <button @click="addCharacter" style="border: 1pt blue solid;">Agregar</button>
+      <ul>
+        <li v-for="(character, index) in $store.state.characters"
+          :key="index">
+          {{ character }}
+        </li>
+      </ul>
+      <div>
+        <h1>personajes</h1>
+        <li v-for="(character, characters) in $store.state.characters"
+          :key="character.id">
+          nombre: {{ character.id }}
+        </li>
+      </div>
   </div>
   </template>
 
@@ -28,23 +36,22 @@
     name: 'ShowOne',
     data: function(){
       return{
-        character: [''],
+        character: '',
+        show: ''
+
       }
     },
-    methods: {},
-    computed: {
-        characterId(){
-          return this.$store.getters.characterId
-        },
-        characterName(){
-          return this.$store.getters.characterName
-        },
-        allUser(){
-          return `${this.character}`
-        },
-        ...mapState(['userList'])
+    methods: {
+      addCharacter(){
+        this.$store.state.character = this.character;
+        this.$store.dispatch('addCharacterAction')
+      },
+      show(){
+        this.$store.state.character = this.character;
+        this.$store.dispatch('show')
+      },
+    },
 
-    }
 
     };
   

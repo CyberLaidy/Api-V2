@@ -1,15 +1,34 @@
 
 <template>
-  <CardEpisodes />
+  <div id="app">
+    <div class="container">
+      {{  }}
+      <RouterView/>
+    </div>
+  </div>
 </template>
+
+<!-- BOOK LIST PADRE -->
 
   <script>
   import { mapState } from 'vuex';
   import store from '@/store';
 
   import CardEpisodes from '@/components/CardsEpisodes.vue'
+import CardsEpisodes from '@/components/CardsEpisodes.vue';
+import { RouterView } from 'vue-router';
   
   export default{
+    name: "CharacterList",
+    components: {
+
+    RouterView
+},
+/*     computed: {
+      ...mapState(["charecters"]),
+    } */
+  }
+/*   export default{
     name: 'Episodes',
     components: {
       CardEpisodes
@@ -23,7 +42,7 @@
       //...mapActions(['tvepisode'])
 
     }
-  };
+  }; */
   
    
   

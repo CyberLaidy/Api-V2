@@ -18,7 +18,7 @@
           <router-link to="/create" style="text-decoration: none;">Create</router-link>
         </v-tab>
         <v-tab>
-          <router-link to="/edit" style="text-decoration: none;">Edit</router-link>
+          <router-link to="/add" style="text-decoration: none;">Add</router-link>
         </v-tab>
         <v-tab>
           <router-link to="/one" style="text-decoration: none;">One</router-link>

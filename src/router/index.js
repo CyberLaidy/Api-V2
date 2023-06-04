@@ -45,11 +45,11 @@ Vue.use(VueRouter)
     }
   },
   {
-    path: '/edit',
-    name: 'edit',
-    to: 'edit',
+    path: '/add',
+    name: 'add',
+    to: 'add',
     component: function () {
-      return import('../views/Edit.vue')
+      return import('../views/Add.vue')
     }
   },
   {
