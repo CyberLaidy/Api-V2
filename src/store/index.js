@@ -29,11 +29,15 @@ export default new Vuex.Store({
       fetch('https://rickandmortyapi.com/api/episode')
       .then(response => response.json())
       .then(response => {
-        this.episodes = response.data.results;
-        this.pages= response.data.info.pages;
-        console.log(`data ${response.data}`)
+        // NO SE PUEDE MODIFICAR EL ESTADO DESDE UNA ACTION!!!!
+        // https://vuex.vuejs.org/guide/mutations.html
+        // 
+        // this.episodes = response.results;
+        // this.pages= response.info.pages;
+        // console.log(`data ${response.data}`)
         
-        commit('initTvEpisode', response.data)
+        // Será results, no?
+        commit('initTvEpisode', response.results)
       })
     },
     fetchUsers({ commit }){

@@ -54,14 +54,16 @@
   <script>
   
   import { mapState } from 'vuex';
-  import store from '@/store';
+  // SOBRA!!
+  // import store from '@/store';
   
   export default {
     name: 'CardsEpisodes',
     props: [''],
     data(){
       return{
-        episodes: [],
+        // YA LO ESTÁS MAPEANDO DEL STORE!!
+        // episodes: [],
         page: 1,
         pages: 1
       }
@@ -73,20 +75,21 @@
       ...mapState(['episodes'])
     },
     created() {
-    this.fetchTvEpisode()
-    
-  },
-  methods: {
-    fetch(){
-      const params = {
-          page: this.page
-      }
+      // TIENES QUE LLAMAR AL STORE....
+      // this.fetchTvEpisode()
+      this.$store.dispatch('fetchTvEpisode')
     },
-    changePage(page){
-      this.page = (page <= 0 || page > this.pages) ? this.page : page
-      this.fetch();
-    },
-  }
+    methods: {
+      fetch(){
+        const params = {
+            page: this.page
+        }
+      },
+      changePage(page){
+        this.page = (page <= 0 || page > this.pages) ? this.page : page
+        this.fetch();
+      },
+    }
 }
   
   </script>
