@@ -1,19 +1,27 @@
+<!-- PAGE DETALLES -->
 <template>
     <div class="home">
     <p class="titulo-home">Character details</p> 
-    <AllCharacter />
+    <CardsCharacters />
+    
   </div>
 </template>
 
 <script>
-import ShowOne from '@/components/ShowOne.vue';
-
+import CardsCharacters from '@/components/CardsCharacters.vue';
 
 export default {
     Name: 'Details',
     props: '',
     components: {
-        ShowOne,
+        CardsCharacters,
+    
     }
 }
 </script>
+<style>
+.titulo-home {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+</style>

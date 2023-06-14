@@ -1,15 +1,11 @@
-<!--CARDs Personaje Home || FILTER BY NAME-->
+<!-- Parent Search -->
+<!-- Home-->
 <template>
     <div>
       <!--Buscador home-->
-      <!-- <div class="control">
-        <input type="text" class="input" v-model="searchUser" placeholder="Inserta un nombre" v-on:keyup.enter="searchUser">
-        <button class="btnBuscar " v-on:click="searchUser">Buscar</button>
-      </div> -->
-            <!--Buscador home-->
-            <div class="control">
-        <input type="text" class="input" v-model="name" placeholder="Search by name" v-on:keyup.enter="filter()">
-        <button class="btnBuscar " v-on:click="search">Buscar</button>
+      <div class="control">
+        <input type="text" class="input" v-model="search" placeholder="Search a name" v-on:keyup.enter="searchData">
+        <button class="btnBuscar " v-on:click="searchData">Search</button>
       </div>
       <!--card-->
       <div style="margin-top: 30px;">
@@ -24,98 +20,77 @@
                   height="350"
                   max-width="350"
                   style="display: contents; ">
-                <div v-for="userName of characters" :key="userName.id"> 
+                <div v-for="character of characters" v-bind:key="character.id"> 
                 <div class="card-style" >
-                  <div class="card-header">
+                  <div class="card-content" style="display: flex; flex-direction: column;">
+                    <v-card-text class="texto-nombre-card my-4 text-center text-h6">{{ character.name }}</v-card-text>
                   </div>
-                    <div class="card-content" style="display: flex; flex-direction: column;">
-                    <v-card-text class="texto-nombre-card my-4 text-center text-h6">{{ userName.name }}</v-card-text>
-                    <img v-bind:src="userName.image" v-bind:alt="userName.name" style="border-radius: 100px; width: 180px;">
-
-                    <!-- <v-card-text class="my-4 text-center text-h6">{{ character.id }}</v-card-text> -->
-                    <!-- <button class="ver-mas">Ver más</button> -->
-                    </div>
+                  <div class="card-header">
+                    <img v-bind:src="character.image" v-bind:alt="character.name" style="border-radius: 50px; width: 180px;">
+                  </div>
                 </div>
               </div>
                 </v-card>
               </v-hover>
             </v-col>
           </v-row> 
+          <!--Paginacion Home-->
+          <div class="container">
+                <nav class="pagination" role="navegation" aria-label="pagination">
+                    <!--Pagina anterior-->
+                    <button>
+                        <a class="pagination-previus" v-on:click="changePage(page-1)">Previus</a>
+                    </button>    
+                    <!--Página actual-->
+                    <a class="pagination-link"> {{ page }}</a>
+                    <!--Pagina siguiente-->
+                    <button>
+                        <a class="pagination-next" v-on:click="changePage(page+1)">Next</a>                
+                    </button>
+                </nav>
+          </div>
       </div>
   </div>
   </template>
 
   <script>
   //importamos las librerias 
-  import store from '@/store';
 import axios from 'axios';
-
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
   
 
   //localStorage.setItem = (id, 'id'); 
 
-  import { mapState } from 'vuex';
-
+  
   export default {
     name: 'Cards',
     props: [''],
-    components: {
-
-    },
+    characters: [''],
     data: function(){
       return{
-         userName: '',
-         name,
-         filter,
-
+        characters: [],
+        page: 1,
+        pages: 1,
+        search: '',
       }
-      
     },
     //mostrará personajes cuando la web carga
     created(){
-      this.$store.dispatch('fetchSearchUser');
-      
-    },
-    computed: {
-        /**Mostrar personajes */
-        cadenaBusqueda (){
-            return `${this.characters}`
-        },
-        ...mapState(['characters', 'userName'])
-        
+      this.fetch()
     },
     methods: {
-      searchBusqueda(){
-        const params = {
-          name: this.name
-        }
-        this.$store.dispatch('fetchSearchUser', params);
-      },
-      ...mapActions(['initSearchUser']),
-      /**Buscador */
-      searchData(){
-        this.page = 1
-        this.$store.dispatch('fetchSearchUser', params);
-
-      }, 
-    }
-    /* methods: {
-
       fetch(){
         const params = {
           //paginamos
           page: this.page,
-          //buscamos por id
-          name: this.search
+          //buscamos por nombre
+          name: this.search /*valor buscador*/
         }
         let result = axios
         .get("https://rickandmortyapi.com/api/character", {params})
         .then(res =>{
           this.characters = res.data.results;
-          //console.log(res.data.info)
           this.pages= res.data.info.pages;
-          //this.ids= res.data.results.id;
           console.log(res.data)
         })
         .catch(err => {
@@ -130,10 +105,9 @@ import { mapActions, mapGetters } from 'vuex';
       searchData(){
         this.page = 1
         this.fetch();
-
       }, 
+
     },
-    */
   };
   
   </script>
@@ -181,17 +155,26 @@ import { mapActions, mapGetters } from 'vuex';
       flex-direction: column; 
       align-items: center; 
       margin: 20px; 
-      border: solid 3pt rgb(0, 0, 0); 
-      background: rgb(50, 138, 101); 
+      border: solid 3pt rgb(0, 34, 112); 
+      background: rgb(171, 174, 199); 
       border-radius: 30px; 
       padding: 5px; 
       width: 220px;
       height: 90%;
-
+    }
+    .texto-nombre-card{
+        color: white;
+        font-weight: 600;
+        font-size: large;
+        width: 200px;
+        text-align: center;
+    }
+    .texto-nombre-card:hover{
+        color: black;
     }
     .card-style:hover{
       border: solid 3pt rgb(255, 255, 255); 
-      background: rgba(0, 255, 102, 0.761); 
+      background: rgba(0, 255, 102, 0.761);
     
     }
     .v-card__text:hover{
@@ -199,6 +182,7 @@ import { mapActions, mapGetters } from 'vuex';
       font-weight: 600;
     }
     .search {
+      
       display: flex;
       justify-content: center;
       /* background: aqua; */
@@ -216,6 +200,7 @@ import { mapActions, mapGetters } from 'vuex';
       border-radius: 0px 10px 10px 0px;
   }
     input.input {
+        width: 300px;
       background: aliceblue;
       border: solid black 1pt;
       padding-left: 10px;

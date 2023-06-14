@@ -18,14 +18,14 @@ Vue.use(VueRouter)
     }
   },
   {
-    path: '/about',
-    name: 'about',
-    to: 'about',
+    path: '/locations',
+    name: 'locations',
+    to: 'locations',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: function () {
-      return import( /* webpackChunkName: "about" */ '../views/AboutView.vue')
+      return import( /* webpackChunkName: "about" */ '../views/Locations.vue')
     }
   },
   {
@@ -53,14 +53,6 @@ Vue.use(VueRouter)
     }
   },
   {
-    path: '/one',
-    name: 'one',
-    to: 'one',
-    component: function () {
-      return import('../components/ShowOne.vue')
-    }
-  },
-  {
     path: '/cards',
     name: 'cards',
     to: 'cards',
@@ -73,7 +65,7 @@ Vue.use(VueRouter)
     name: 'search',
     to: 'search',
     component: function () {
-      return import('../components/Search.vue')
+      return import('../views/SearchView.vue')
     }
   },
 ] 

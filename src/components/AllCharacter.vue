@@ -1,4 +1,4 @@
-<!--PAGINA DE DETALLES DE CADA PERSONAJE-->
+<!--All con axios-->
 <template>
     <div>
         <character :character="character" v-for="character in characters" :key="character.id"></character>

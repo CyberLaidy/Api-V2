@@ -1,4 +1,4 @@
-<!--CARDs Personaje -- FUNCIONA--> 
+<!--PAGE PARENT DETALLES --> 
 <template>
     <div>
       <!--card-->
@@ -15,12 +15,16 @@
                   max-width="350"
                   style="display: contents; ">
                 <div v-for="startusers of characters" v-bind:key="startusers.id"> 
-                <div class="card-style" >
+                <div class="card-style-character" >
                   <div class="card-header">
+                    <v-card-text class="texto-nombre-card my-4 text-center text-h6">{{ startusers.name }}</v-card-text>
                     <img v-bind:src="startusers.image" v-bind:alt="startusers.name" style="border-radius: 50px; width: 180px;">
                   </div>
-                    <div class="card-content" style="display: flex; flex-direction: column;">
-                    <v-card-text class="texto-nombre-card my-4 text-center text-h6">{{ startusers.name }}</v-card-text>
+                  <div class="card-content" style="display: flex; flex-direction: column;">
+                    <v-card-text class="texto-nombre-card my-4 text-center text-h6">Gender:{{ startusers.gender }}</v-card-text>
+                    <v-card-text class="texto-nombre-card my-4 text-center text-h6">Status: {{ startusers.status }}</v-card-text>
+                    <v-card-text class="texto-nombre-card my-4 text-center text-h6">Specie: {{ startusers.species }}</v-card-text>
+                    <v-card-text class="texto-nombre-card my-4 text-center text-h6">Origin: {{ startusers.origin.name }}</v-card-text>
                     </div>
                 </div>
               </div>
@@ -36,7 +40,7 @@
 import { mapState } from 'vuex';
 
   export default{
-    name: 'CardCharacters',
+    name: 'CardsCharacters',
     props: [''],
     components: {
 
@@ -54,10 +58,8 @@ import { mapState } from 'vuex';
         cadenaPersonajes (){
             return `${this.characters}`
         },
-        ...mapState(['characters']),
-        
+        ...mapState(['characters']), 
     }
-
   }
 
 </script>
@@ -101,7 +103,7 @@ button .pagination-next{
 .card-header img{
   width: 170px;
 }
-.card-style{
+.card-style-character{
   display: flex; 
   flex-direction: column; 
   align-items: center; 
@@ -112,17 +114,27 @@ button .pagination-next{
   padding: 5px; 
   width: 220px;
   height: 90%;
-
+  padding: 20px;
+  justify-content: flex-start;
 }
-.card-style:hover{
+.texto-nombre-card{
+  color: white;
+  font-family: monospace;
+  font-size: large;
+}
+.texto-nombre-card:hover{
+  color: black;
+}
+.card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.card-style-character:hover{
   border: solid 3pt rgb(255, 255, 255); 
-  background: rgba(0, 255, 102, 0.761); 
+  background: rgba(17, 176, 70, 0.761); 
+}
 
-}
-.v-card__text:hover{
-  font-size: 20px;
-  font-weight: 600;
-}
 .search {
   display: flex;
   justify-content: center;

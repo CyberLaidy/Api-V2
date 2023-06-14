@@ -11,15 +11,13 @@
 </template>
 
 <script>
-//importamos las librerias 
-import axios from 'axios';
+
 
 //importamos los componentes
 import Header from './components/Header.vue';
 import HomeView from './views/HomeView.vue';
 import Nav from './components/Nav.vue';
 import Footer from './components/Footer.vue';
-import Episodes from './views/Episodes.vue';
 import { RouterView } from 'vue-router';
 import BtnDialog from './components/BtnDialog.vue';
 
@@ -30,10 +28,8 @@ export default {
     Header,
     Nav,
     HomeView,
-    Episodes,
     Footer,
     RouterView,
-    BtnDialog,
 
 },
 };

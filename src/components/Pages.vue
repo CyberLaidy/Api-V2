@@ -1,3 +1,4 @@
+<!-- Paginacion -->
 <template>
             <!--Paginacion Home-->
             <div class="container">
@@ -102,20 +103,6 @@ export default {
   }
   .card-header img{
     width: 170px;
-  }
-  .card-style-episode{
-      display: flex;
-      margin: 20px;
-      border: solid 3pt rgb(125, 125, 125);
-      background: gainsboro;
-      border-radius: 30px;
-      padding: 5px;
-      width: 300px;
-      height: 80%;
-      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-      align-items: center;
-      flex-direction: column;
-
   }
   .card-style-episode:hover{
     border: solid 3pt skyblue; 

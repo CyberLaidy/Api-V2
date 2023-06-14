@@ -1,6 +1,7 @@
+<!-- Page Home - chid Cards -->
 <template>
   <div class="home">
-    <p class="titulo-home">Character List</p>
+    <p class="titulo-home">Image List</p>
     <Cards />
   </div>
 </template>
@@ -10,11 +11,10 @@
 
 import Cards from '@/components/Cards.vue';
 
-
 export default {
   name: 'HomeView',
   components:{
-      Cards, //change
+      Cards, 
 
   }
 }

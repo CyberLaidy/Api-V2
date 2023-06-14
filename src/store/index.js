@@ -13,14 +13,14 @@ export default new Vuex.Store({
     setCharactersFilter: []
   },
   mutations: {
-    initTvEpisode(state, tvepisode){ //FUNCIONA
+    initTvEpisode(state, tvepisode){ //
       state.episodes = tvepisode
     },
-    initStartUsers(state, startusers){ //FUNCIONA
+    initStartUsers(state, startusers){ //
       state.characters = startusers
     }, 
-    initWorld(state, world){
-      state.locations = world
+    initStartWorld(state, startworld){
+      state.locations = startworld
     },
     initAllPages(state, allpages){
       state.characters = allpages
@@ -28,16 +28,19 @@ export default new Vuex.Store({
     initPageMorty(state, pagemorty){
       state.characters = pagemorty
     },
-    initSearchUser(state, userName){ //OK
+    initSearchUser(state, userName){ //
       state.characters = userName
     },
-    setCharactersFilter(state, payload){ //??
-      state.characters = payload
+    setCharactersFilter(state, filterName){ 
+      state.characters = filterName
     },
+    postAddCharacter(state, addName){
+      state.characters = addName
+    }
     
   },
   actions: {
-    fetchEpisode({ commit }){ /**FUNCIONA */
+    fetchEpisode({ commit }){ /** Episodes*/
       fetch('https://rickandmortyapi.com/api/episode')
       .then(response => response.json())
       .then(response => {
@@ -46,7 +49,7 @@ export default new Vuex.Store({
         
       })
     },
-    fetchUsers({ commit }){ /**FUNCIONA */
+    fetchUsers({ commit }){ /**Charcaters */
       fetch('https://rickandmortyapi.com/api/character')
       .then(response => response.json())
       .then(response => {
@@ -54,12 +57,12 @@ export default new Vuex.Store({
        commit('initStartUsers', response.results)
       })
     },
-    fetchWorld({ commit }){
+    fetchWorld({ commit }){ /**Locations */
       fetch('https://rickandmortyapi.com/api/location')
       .then(response => response.json())
       .then(response => {        
       
-        commit('initWorld', response.results)
+        commit('initStartWorld', response.results)
       })
     },
     fetchPages({ commit }){
@@ -71,19 +74,27 @@ export default new Vuex.Store({
       })
     },
     fetchMorty({ commit }){
-      fetch('https://rickandmortyapi.com/api/character')
+      fetch('https://rickandmortyapi.com/api/character/2')
       .then(response => response.json())
       .then(response => {        
       
         commit('initPageMorty', response.results)
       })
     },
-    fetchSearchUser({ commit }, userName){
-      fetch('https://rickandmortyapi.com/api/character', {userName})
+    fetchSearchUser({ commit }){
+      fetch('https://rickandmortyapi.com/api/character/')
       .then(response => response.json())
       .then(response => {        
       
         commit('initSearchUser', response.results)
+      })
+    },  
+    fetchPostAddCharacter({ commit }){
+      fetch('https://rickandmortyapi.com/api/character')
+      .then(response => response.json())
+      .then(response => {        
+        console.log('comi')
+        commit('postAddCharacter', response.results)
       })
     },  
   },
