@@ -4,72 +4,90 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-
-/*Como los valores son fijos, create otro componente y usa los valores de vuex*/
 export default new Vuex.Store({
   state: {
-    characters: [''],
-    character: {
-      id: '2020',
-      name: 'Sandra',
-      status: 'string',
-      species: 'string',
-      type: 'string',
-      gender: 'string',
-      location: 'object',
-    },
-    search: {
-      name: 'string'
-    }
-
-  },
-  getters: {
-    AllCharactersApi (state){
-      return state.characters
-    },
-    OneCharactersApi (state){
-      return state.character
-    },
-    searchData(state){
-      return state.search
-    },
-    /**Character */
-    characterName (state){
-      return state.character.name
-    },
-    characterId (state){
-      return state.character.id
-    },
-    characterStatus (state){
-      return state.character.status
-    },
-    characterSpecies (state){
-      return state.character.species
-    },
-    characterType (state){
-      return state.character.tyoe
-    },
-    characterGender (state){
-      return state.character.gender
-    },
-    characterLocation (state){
-      return state.character.location
-    },
-    
+    episodes: [],
+    characters: [],
+    locations: [],
+    charactersFilter: [],
+    setCharactersFilter: []
   },
   mutations: {
-
+    initTvEpisode(state, tvepisode){ //FUNCIONA
+      state.episodes = tvepisode
+    },
+    initStartUsers(state, startusers){ //FUNCIONA
+      state.characters = startusers
+    }, 
+    initWorld(state, world){
+      state.locations = world
+    },
+    initAllPages(state, allpages){
+      state.characters = allpages
+    },
+    initPageMorty(state, pagemorty){
+      state.characters = pagemorty
+    },
+    initSearchUser(state, userName){ //OK
+      state.characters = userName
+    },
+    setCharactersFilter(state, payload){ //??
+      state.characters = payload
+    },
     
   },
   actions: {
-    changePage(page){
-      this.page = (page <= 0 || page > this.pages) ? this.page : page
-      this.fetch();
-      
+    fetchEpisode({ commit }){ /**FUNCIONA */
+      fetch('https://rickandmortyapi.com/api/episode')
+      .then(response => response.json())
+      .then(response => {
+
+        commit('initTvEpisode', response.results)
+        
+      })
     },
-
-
+    fetchUsers({ commit }){ /**FUNCIONA */
+      fetch('https://rickandmortyapi.com/api/character')
+      .then(response => response.json())
+      .then(response => {
+      
+       commit('initStartUsers', response.results)
+      })
+    },
+    fetchWorld({ commit }){
+      fetch('https://rickandmortyapi.com/api/location')
+      .then(response => response.json())
+      .then(response => {        
+      
+        commit('initWorld', response.results)
+      })
+    },
+    fetchPages({ commit }){
+      fetch('https://rickandmortyapi.com/api/character')
+      .then(response => response.json())
+      .then(response => {        
+      
+        commit('initAllPages', response.info)
+      })
+    },
+    fetchMorty({ commit }){
+      fetch('https://rickandmortyapi.com/api/character')
+      .then(response => response.json())
+      .then(response => {        
+      
+        commit('initPageMorty', response.results)
+      })
+    },
+    fetchSearchUser({ commit }, userName){
+      fetch('https://rickandmortyapi.com/api/character', {userName})
+      .then(response => response.json())
+      .then(response => {        
+      
+        commit('initSearchUser', response.results)
+      })
+    },  
   },
   modules: {
-  }
-})
+
+  },
+});

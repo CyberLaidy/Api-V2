@@ -9,23 +9,22 @@
           <RouterLink to="/" style="text-decoration: none;">Home</RouterLink>
         </v-tab>
         <v-tab>
+          <router-link to="/cards" style="text-decoration: none;">Cards</router-link>
+        </v-tab>
+        <v-tab>
           <router-link to="/episodes" style="text-decoration: none;">Episodes</router-link>
         </v-tab>
         <v-tab>
           <router-link to="/details" style="text-decoration: none;">Details</router-link>
         </v-tab>
         <v-tab>
-          <router-link to="/create" style="text-decoration: none;">Create</router-link>
+          <router-link to="/add" style="text-decoration: none;">Add</router-link>
         </v-tab>
         <v-tab>
-          <router-link to="/edit" style="text-decoration: none;">Edit</router-link>
+          <router-link to="/search" style="text-decoration: none;">Search</router-link>
         </v-tab>
-        <v-tab>
-          <router-link to="/one" style="text-decoration: none;">One</router-link>
-        </v-tab>
-        <v-tab>
-          <router-link to="/about" style="text-decoration: none;">About</router-link>
-        </v-tab>
+
+        
       </v-tabs>
     </div>
 

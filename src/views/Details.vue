@@ -6,14 +6,14 @@
 </template>
 
 <script>
-import AllCharacter from '@/components/AllCharacter.vue';
+import ShowOne from '@/components/ShowOne.vue';
 
 
 export default {
     Name: 'Details',
     props: '',
     components: {
-        AllCharacter,
+        ShowOne,
     }
 }
 </script>

@@ -37,19 +37,11 @@ Vue.use(VueRouter)
     }
   },
   {
-    path: '/create',
-    name: 'create',
-    to: 'create',
+    path: '/add',
+    name: 'add',
+    to: 'add',
     component: function () {
       return import('../views/Create.vue')
-    }
-  },
-  {
-    path: '/edit',
-    name: 'edit',
-    to: 'edit',
-    component: function () {
-      return import('../views/Edit.vue')
     }
   },
   {
@@ -66,6 +58,22 @@ Vue.use(VueRouter)
     to: 'one',
     component: function () {
       return import('../components/ShowOne.vue')
+    }
+  },
+  {
+    path: '/cards',
+    name: 'cards',
+    to: 'cards',
+    component: function () {
+      return import('../components/CardsCharacters.vue')
+    }
+  },
+  {
+    path: '/search',
+    name: 'search',
+    to: 'search',
+    component: function () {
+      return import('../components/Search.vue')
     }
   },
 ] 

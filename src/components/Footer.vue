@@ -1,6 +1,6 @@
 <!--Footer-->
 <template>
-  <div class="footer">
+  <div class="footer" style="margin-top: 30px;">
     <p>Api create by Sandra</p>
   </div>
 </template>

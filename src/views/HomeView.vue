@@ -14,7 +14,7 @@ import Cards from '@/components/Cards.vue';
 export default {
   name: 'HomeView',
   components:{
-      Cards,
+      Cards, //change
 
   }
 }
