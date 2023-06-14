@@ -72,7 +72,7 @@
       }
     },
     created(){
-      this.$store.dispatch('fetchTvEpisode'),
+      this.$store.dispatch('fetchEpisode'),
       this.$store.dispatch('fetchPages')
     },
     computed: {

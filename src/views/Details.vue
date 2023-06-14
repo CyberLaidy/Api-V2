@@ -19,6 +19,8 @@ export default {
     }
 }
 </script>
+
+
 <style>
 .titulo-home {
     font-family: 'Courier New', Courier, monospace;

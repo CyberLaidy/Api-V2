@@ -123,6 +123,26 @@ export default{
         /**envia acciones al componente */
         //...mapActions(['fetchPostAddCharacter'])  
     },
+    mounted(){
+      if(localStorage.name) this.name = localStorage.name;
+      if(localStorage.status) this.status = localStorage.status;
+      if(localStorage.species) this.species = localStorage.species;
+      if(localStorage.gender) this.gender = localStorage.gender;
+    },
+    watch: {
+    name(newName) {
+      localStorage.name = newName;
+    },
+    status(newStatus) {
+      localStorage.status = newStatus;
+    },
+    species(newSpecies) {
+      localStorage.species = newSpecies;
+    },
+    gender(newGender) {
+      localStorage.gender = newGender;
+    },
+  }
 }
 
 /**async function addNew(data) {

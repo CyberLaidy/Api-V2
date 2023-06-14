@@ -14,14 +14,7 @@
     components: {
       CardEpisodes
     },
-    created() {
-      this.$store.dispatch('fetchEpisode')
-      //this.fetchEpisode()
-    },
-    methods: {
-      //...mapActions(['fetchEpisode'])
-      
-    }
+    
   };
   
   </script>
