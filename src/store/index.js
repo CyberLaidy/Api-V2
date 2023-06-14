@@ -19,7 +19,7 @@ export default new Vuex.Store({
     initStartUsers(state, startusers){ //
       state.characters = startusers
     }, 
-    initStartWorld(state, startworld){
+    initStartWorld(state, startworld){ //
       state.locations = startworld
     },
     initAllPages(state, allpages){
@@ -93,9 +93,8 @@ export default new Vuex.Store({
       fetch('https://rickandmortyapi.com/api/character')
       .then(response => response.json())
       .then(response => {        
-        console.log('comi')
         commit('postAddCharacter', response.results)
-      })
+      })//añadir metodo Post
     },  
   },
   modules: {

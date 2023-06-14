@@ -12,7 +12,7 @@
           md="12"
         >
           <v-text-field
-            v-model="id"
+            v-model="posts.id"
             label="301"
             disabled
           ></v-text-field>
@@ -22,7 +22,7 @@
           md="12"
         >
           <v-text-field
-            v-model="firstname"
+            v-model="posts.firstname"
             label="Name"
             required
           ></v-text-field>
@@ -33,7 +33,7 @@
           md="12"
         >
           <v-text-field
-            v-model="lastname"
+            v-model="posts.lastname"
             label="Last Name"
             required
           ></v-text-field>
@@ -44,7 +44,7 @@
           md="12"
         >
           <v-text-field
-            v-model="status"
+            v-model="posts.status"
             label="Status"
             required
           ></v-text-field>
@@ -54,7 +54,7 @@
           md="12"
         >
           <v-text-field
-            v-model="species"
+            v-model="posts.species"
             label="Species"
             required
           ></v-text-field>
@@ -66,7 +66,7 @@
           md="12"
         >
           <v-text-field
-            v-model="Gender"
+            v-model="posts.gender"
             label="Gender"
             required
           ></v-text-field>
@@ -74,7 +74,7 @@
       </v-row>
     </v-container>
     <div class="button">
-      <button class="button" :onclick="guardar()">Create</button>
+      <button class="button" :onclick="guardar()" method="POST">Create</button>
 
     </div>
   </v-form>
@@ -87,30 +87,31 @@ import { mapActions, mapMutations, mapState } from 'vuex';
 export default{
     name: 'AddCharacter',
     props: [''],
-    characters: {
-      id: 'id',
-      name: 'name',
-      status: 'status',
-      species: 'species',
-      gender: 'gender',
-    },
+    characters: [],
     data(){
         return{
+          posts:{
+            id: '',
+            name: '',
+            status: '',
+            species: '',
+            gender: '',
+          }
         }
     },
     methods: {
         guardar(){
             /**recogemos los caracters - acceso a accion*/
-            this.$store.dispatch('fetchPostAddCharacter', this.characters);
-            console.log('Se han guardado los datos')
+            this.$store.dispatch('fetchPostAddCharacter', this.posts); //accion
             /**acceso a mutacion */
-            this.$store.commit('postAddCharacter', this.characters);
+            this.$store.commit('postAddCharacter', this.posts); //mutation
+            //console.log('Se han guardado los datos')
         },
     },
     created(){
         /**envia acciones al componente */
-        this.$store.dispatch('fetchPostAddCharacter');
-        this.$store.dispatch('postAddCharacter');
+        this.$store.dispatch('fetchPostAddCharacter'); //mutacion
+        this.$store.dispatch('postAddCharacter'); //accion
     },
     computed: {
         /**Mostrar personajes */

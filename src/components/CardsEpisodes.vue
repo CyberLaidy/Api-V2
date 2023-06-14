@@ -30,7 +30,21 @@
               </v-hover>
             </v-col>
           </v-row> 
-          <Pages></Pages>
+                    <!--Paginacion Home-->
+                    <div class="container">
+                <nav class="pagination" role="navegation" aria-label="pagination">
+                    <!--Pagina anterior-->
+                    <button>
+                        <a class="pagination-previus" v-on:click="changePage(page-1)">Previus</a>
+                    </button>    
+                    <!--Página actual-->
+                    <a class="pagination-link"> {{ page }}</a>
+                    <!--Pagina siguiente-->
+                    <button>
+                        <a class="pagination-next" v-on:click="changePage(page+1)">Next</a>                
+                    </button>
+                </nav>
+          </div>
       </div>
     </div>
 </template>
@@ -59,9 +73,7 @@
     },
     created(){
       this.$store.dispatch('fetchTvEpisode'),
-      this.$store.dispatch('fetchPages'),
-      
-      this.fetch()
+      this.$store.dispatch('fetchPages')
     },
     computed: {
       /**Mostrar episodios */
@@ -72,9 +84,9 @@
 
       /*Mostrar paginas*/
       cadenaPaginas(){
-        return `${this.paginations}`
+        return `${this.characters}`
       },
-      ...mapState(['paginations'])
+      ...mapState(['characters'])
     },
 
   };

@@ -11,7 +11,6 @@ import AddCharacter from '@/components/AddCharacter.vue';
 export default {
     name: 'Create',
     props: [''],
-    characters: [''],
     components: {
       AddCharacter,
     }

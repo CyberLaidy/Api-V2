@@ -3,7 +3,7 @@
     <div class="nav" style="background-color: rgb(75, 75, 75); display: flex; justify-content: center; height: 70px; align-items: center;"
     >
       <v-btn>
-        <span style=" font-size: 30pt; font-weight: 600;">RICKY & MORTI</span>
+        <span style=" font-size: 30pt; font-weight: 600;">RICK & MORTY</span>
       </v-btn>
     </div>
   </template>
