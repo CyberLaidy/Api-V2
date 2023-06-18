@@ -10,6 +10,7 @@
           Detalles de personaje
         </v-card-title>
         <v-card-text>
+          
           <p>Nombre: </p>
           <p>Género: </p>
           <p>Specie: </p>
@@ -18,6 +19,8 @@
       </div>
     </div>
   </v-card>
+
+
     <!--card con todos los personajes-->
     <div style="margin-top: 30px;">
         <v-row class="vrow" v-on="fetch">
@@ -48,20 +51,13 @@
           </v-col>
         </v-row> 
     </div>
-    
-  <!-- Modal 2 -->
-
-
 </div>
+
 </template>
 
 <script>
 //importamos las librerias 
 import axios from 'axios';
-import { mapGetters } from 'vuex';
-
-
-//localStorage.setItem = (id, 'id'); 
 
 
 export default {
@@ -72,7 +68,7 @@ export default {
     return{
       characters: [],
       modal: false,
-      currentCharacter: []
+      currentCharacter: [],
     }
   },
   //mostrará personajes cuando la web carga
@@ -101,13 +97,13 @@ export default {
       this.fetchOne(id)
     },
     fetchOne(id){
-      //http axios
+      //http 
       let res = axios.get(`https://rickandmortyapi.com/api/character/${id}/`)
       .then(result => {
         this.currentCharacter = result.data.results;
         this.modal = true;
         console.log('Datos personaje: ', result.data) //no puedo usar currentCharacter
-      })
+      }) 
     },
     
   },

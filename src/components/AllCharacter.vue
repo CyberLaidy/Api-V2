@@ -63,7 +63,7 @@ import { mapActions, mapState } from 'vuex';
   
   export default {
     name: 'AllCharacter',
-    props: ['characters'],
+    props: [''],
     characters: {
       id: 'number',
       name: 'string',

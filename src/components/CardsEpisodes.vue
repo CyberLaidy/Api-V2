@@ -68,7 +68,8 @@
     data(){
       return{
         page: 1,
-        pages: 1
+        pages: 1,
+        fetch: '',
       }
     },
     created(){

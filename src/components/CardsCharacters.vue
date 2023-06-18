@@ -47,7 +47,7 @@ import { mapState } from 'vuex';
     },
     data(){
         return{
-
+          fetch: '',
         }
     },
     created(){

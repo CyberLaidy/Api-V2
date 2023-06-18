@@ -10,8 +10,12 @@ export default new Vuex.Store({
     characters: [], //todos los personajes
     locations: [], //todos las localizaciones
     charactersFilter: [],
-    setonecharacter: [], //un personaje
-
+    onecharacter: [{
+      id: '',
+      name: '',
+      gender: ''
+    }], //un personaje
+    id: []
   },
   mutations: {
     initTvEpisode(state, tvepisode){ //
@@ -26,9 +30,6 @@ export default new Vuex.Store({
     initAllPages(state, allpages){
       state.characters = allpages
     },
-    initPageMorty(state, pagemorty){
-      state.characters = pagemorty
-    },
     initSearchUser(state, userName){ //
       state.characters = userName
     },
@@ -38,9 +39,9 @@ export default new Vuex.Store({
     postAddCharacter(state, addName){
       state.characters = addName
     },
-    OneCharacter(state, onecharacter){
-      state.setonecharacter = onecharacter
-    }
+    initOneStartUsers(state, onestartusers){ //
+      state.onecharacter = onestartusers
+    }, 
     
   },
   actions: {
@@ -77,14 +78,6 @@ export default new Vuex.Store({
         commit('initAllPages', response.info)
       })
     },
-    fetchMorty({ commit }){
-      fetch('https://rickandmortyapi.com/api/character/2')
-      .then(response => response.json())
-      .then(response => {        
-      
-        commit('initPageMorty', response.results)
-      })
-    },
     fetchSearchUser({ commit }){
       fetch('https://rickandmortyapi.com/api/character/')
       .then(response => response.json())
@@ -99,15 +92,20 @@ export default new Vuex.Store({
       .then(response => {        
         commit('postAddCharacter', response.results)
       })//añadir metodo Post
-    },  
-    fetchOneCharacter({ commit }){
+    },    
+    fetchOneUsers({ commit }){ /**detalles de personajes */
       fetch(`https://rickandmortyapi.com/api/character/${id}`)
       .then(response => response.json())
-      .then(response => {   
-
-        commit('OneCharacter', response.results)
-      })//detalles de personajes
-    },  
+      .then(response => {
+      
+       commit('initOneStartUsers', response.results)
+      })
+    },
+  },
+  getters: { 
+    getonecharacter: state => {
+      return state.onecharacter
+    }
   },
   modules: {
 

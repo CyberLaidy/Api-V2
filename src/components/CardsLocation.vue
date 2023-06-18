@@ -42,12 +42,11 @@ import { mapState } from 'vuex';
     props: [''],
     data(){
         return{
-
+          fetch: '',
         }
     },
     created(){
-        this.$store.dispatch('fetchWorld');
-        
+        this.$store.dispatch('fetchWorld');   
     },
     computed: {
         cadenaLocalizaciones () {
