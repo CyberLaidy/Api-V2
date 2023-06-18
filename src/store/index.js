@@ -15,7 +15,10 @@ export default new Vuex.Store({
       name: '',
       gender: ''
     }], //un personaje
-    id: []
+    id: [],
+    filter: {
+      name: '',
+    }
   },
   mutations: {
     initTvEpisode(state, tvepisode){ //
@@ -40,7 +43,10 @@ export default new Vuex.Store({
       state.characters = addName
     },
     initOneStartUsers(state, onestartusers){ //
-      state.onecharacter = onestartusers
+      state.characters = onestartusers
+    }, 
+    initSearchtUsers(state, searchusers){ //
+      state.characters = searchusers
     }, 
     
   },
@@ -101,10 +107,21 @@ export default new Vuex.Store({
        commit('initOneStartUsers', response.results)
       })
     },
+    fetchSearchtUsers({ commit }){ /**detalles de personajes */
+      fetch('https://rickandmortyapi.com/api/character')
+      .then(response => response.json())
+      .then(response => {
+      
+       commit('initSearchtUsers', response.results)
+      })
+    },
   },
   getters: { 
-    getonecharacter: state => {
+    getonecharacter(state) {
       return state.onecharacter
+    },
+    getsearchusers(state){
+      return state.filter.name
     }
   },
   modules: {

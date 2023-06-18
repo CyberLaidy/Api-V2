@@ -1,6 +1,11 @@
 <!--PAGE PARENT HOME --> 
 <template>
   <div>
+    <!--Buscador home-->
+    <div class="control">
+        <input type="text" class="input" v-model="search" placeholder="Search a name" v-on:keyup.enter="search">
+        <button class="btnBuscar " v-on:click="search">Search</button>
+      </div>
     <!--card-->
     <div style="margin-top: 30px;">
         <v-row class="vrow" v-on="fetch">
@@ -16,8 +21,9 @@
                 style="display: contents; ">
               <div v-for="startusers of characters" v-bind:key="startusers.id"> 
               <div class="card-style-home" >
-                <div class="card-header">
+                <div class="card-header text-center">
                   <img v-bind:src="startusers.image" v-bind:alt="startusers.name" style="border-radius: 50px; width: 180px;">
+                  <v-card-text class="texto-nombre-card my-4 text-center text-h6">{{ startusers.name }}</v-card-text>
                 </div>
               </div>
             </div>
@@ -30,28 +36,26 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex';
+import { mapGetters, mapMutations, mapState } from 'vuex';
 
 export default{
   name: 'Card',
-  props: [''],
-  components: {
-
+  props: {
+    startusers: {
+      type: Object
+    },
   },
-  data(){
+  searchUser: [''],
+  characters: [''],
+  data (){
       return{
          fetch: '',
+         search: '',
       }
   },
   created(){
       this.$store.dispatch('fetchUsers');
-
-  },
-  methods: {
-    moreDetails(){
-      this.$store.dispatch('fetchOneCharacter', this.id);
-    }
-
+      //this.$store.dispatch('fetchSearchUsers');
   },
   computed: {
       /**Mostrar personajes */
@@ -59,13 +63,23 @@ export default{
           return `${this.characters}`
       },
       ...mapState(['characters']), 
-
-    }, 
+      
+      /**Buscar personajes */
+      search: {
+        get(){
+          return this.$store.state.filter.name
+        },
+      }
+  }, 
+  methods: {
+    ...mapMutations(['initStartUsers']),
+    ...mapMutations(['initSearchtUsers']),
+    ...mapGetters(['getsearchusers'])
+  },
 }
 </script>
 
 <style>
-
 .card-header img{
 width: 200px;
 }
@@ -84,13 +98,13 @@ width: 200px;
   justify-content: center;
 }
 .texto-nombre-card{
-color: white;
-font-family: monospace;
-font-size: large;
+  display: flex;
+    color: black;
+    padding-bottom: 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    justify-content: center;
 }
-.texto-nombre-card:hover{
-color: black;
-}
+
 .card-header {
   display: flex;
   flex-direction: column;
