@@ -71,14 +71,14 @@ Vue.use(VueRouter)
       return import('../components/CardMoreInfo.vue')
     }
   },
-  {
+  /* {
     path: '/morevuex',
     name: 'morevuex',
     to: 'morevuex',
     component: function () {
       return import('../components/DetailsVuex.vue')
     }
-  },
+  }, */
 ] 
 
 

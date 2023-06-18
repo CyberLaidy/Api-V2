@@ -6,21 +6,18 @@
     <v-card class="mx-auto d-flex " max-width="344">
       <div class="modal" :class="{ 'is-active' : modal }" v-if="modal">
         <div class="modal-background" @click="modal=false">
-        <v-card-title>
-          Detalles de personaje
-        </v-card-title>
-        <v-card-text>
-          
-          <p>Nombre: </p>
-          <p>Género: </p>
-          <p>Specie: </p>
-          <p>Typo: </p>
-        </v-card-text>
+          <v-card-title>
+            Detalles de personaje
+          </v-card-title>
+          <v-card-text>
+            <p>Nombre: </p>
+            <p>Género: </p>
+            <p>Specie:</p>
+            <p>Typo: </p>
+          </v-card-text>
+        </div>
       </div>
-    </div>
-  </v-card>
-
-
+    </v-card>
     <!--card con todos los personajes-->
     <div style="margin-top: 30px;">
         <v-row class="vrow" v-on="fetch">
@@ -62,13 +59,17 @@ import axios from 'axios';
 
 export default {
   name: 'CardMoreInfo',
-  props: ['characters'],
-  currentCharacter: [''],
+  props: {
+    character:  {type: Object},
+    characters:  {type: Object},
+    currentCharacter: {
+      type: Object
+    },
+  },
   data: function(){
     return{
-      characters: [],
       modal: false,
-      currentCharacter: [],
+      fetch: '',
     }
   },
   //mostrará personajes cuando la web carga

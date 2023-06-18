@@ -52,7 +52,11 @@
   
   export default{
     name: 'DetailsVuex',
-    props: [''],
+    props: {
+      startusers:{
+        type: Object
+      }
+    },
     data: function(){
     return{
       modal: false,

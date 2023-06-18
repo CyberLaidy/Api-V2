@@ -14,7 +14,7 @@
         <v-tab to="/locations" style="text-decoration: none;">Locations</v-tab>
         <v-tab to="/add" style="text-decoration: none;">Add</v-tab>
         <v-tab to="/search" style="text-decoration: none;">Search</v-tab>
-        <v-tab to="/morevuex" style="text-decoration: none;">more-vuex</v-tab>
+        <!-- <v-tab to="/morevuex" style="text-decoration: none;">more-vuex</v-tab> -->
       </v-tabs>
     </div>
 </template>

@@ -2,10 +2,10 @@
 <template>
   <div>
     <!--Buscador home-->
-    <div class="control">
-        <input type="text" class="input" v-model="search" placeholder="Search a name" v-on:keyup.enter="search">
-        <button class="btnBuscar " v-on:click="search">Search</button>
-      </div>
+    <!-- <div class="control" >
+        <input type="text" class="input" v-model="search" placeholder="Search a name" v-on:keyup.enter="search" >
+        <button class="btnBuscar " v-on:click="search" >Search</button>
+      </div> -->
     <!--card-->
     <div style="margin-top: 30px;">
         <v-row class="vrow" v-on="fetch">
@@ -99,7 +99,7 @@ width: 200px;
 }
 .texto-nombre-card{
   display: flex;
-    color: black;
+    color: black !important;
     padding-bottom: 5px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     justify-content: center;
