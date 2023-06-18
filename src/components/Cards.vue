@@ -18,6 +18,7 @@
               <div class="card-style-home" >
                 <div class="card-header">
                   <img v-bind:src="startusers.image" v-bind:alt="startusers.name" style="border-radius: 50px; width: 180px;">
+                  <button v-on:click="moreDetails">More Details</button>
                 </div>
               </div>
             </div>
@@ -30,21 +31,28 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapMutations, mapState } from 'vuex';
 
 export default{
-  name: 'CardCharacters',
+  name: 'Card',
   props: [''],
   components: {
 
   },
   data(){
       return{
-
+          id: '',
       }
   },
   created(){
       this.$store.dispatch('fetchUsers');
+      this.$store.dispatch('fetchOneCharacter');
+  },
+  methods: {
+    moreDetails(){
+      this.$store.dispatch('fetchOneCharacter', this.id);
+    }
+
   },
   computed: {
       /**Mostrar personajes */
@@ -52,8 +60,24 @@ export default{
           return `${this.characters}`
       },
       ...mapState(['characters']), 
-  }
+
+      cadenaUnPersonaje(){
+        return `${this.setonecharacter}`
+      },
+      ...mapState(['setonecharacter'])
+
+    },
+  
+  
 }
+
+  /* fetchOneCharacter(id){
+    fetch(`https://rickandmortyapi.com/api/character/${id}`)
+      .then(response => response.json())
+      .then(response => console.log(response)) 
+  } */
+    
+
 
 </script>
 
@@ -102,8 +126,8 @@ width: 200px;
   align-items: center; 
   margin: 20px; 
   border: solid 3pt rgb(255, 255, 255); 
-  background: rgb(74, 135, 155); 
-  border-radius: 70px; 
+  background: beige; 
+  border-radius: 30px; 
   padding: 5px; 
   width: 250px;
   height: 90%;
@@ -155,6 +179,21 @@ border-radius: 10px 0px 0px 10px;
 display: flex;
 justify-content: center;
 margin-top: 20px;
+}
+.card-header button {
+  background-color:  thistle;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 20px;
+  width: 170px;
+
+}
+.card-header button:hover {
+  background-color: azure;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 20px;
+  width: 170px;
 }
 
 </style>

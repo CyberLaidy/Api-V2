@@ -63,6 +63,14 @@ Vue.use(VueRouter)
       return import('../views/SearchView.vue')
     }
   },
+  {
+    path: '/more',
+    name: 'more',
+    to: 'more',
+    component: function () {
+      return import('../components/CardMoreInfo.vue')
+    }
+  },
 ] 
 
 

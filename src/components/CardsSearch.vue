@@ -84,7 +84,7 @@ import { mapGetters } from 'vuex';
           //paginamos
           page: this.page,
           //buscamos por nombre
-          name: this.search /*valor buscador*/
+          name: this.search, /*valor buscador*/
         }
         let result = axios
         .get("https://rickandmortyapi.com/api/character", {params})

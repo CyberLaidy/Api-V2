@@ -6,11 +6,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    episodes: [],
-    characters: [],
-    locations: [],
+    episodes: [], //todos los espisodios
+    characters: [], //todos los personajes
+    locations: [], //todos las localizaciones
     charactersFilter: [],
-    setCharactersFilter: []
+    setonecharacter: [], //un personaje
+
   },
   mutations: {
     initTvEpisode(state, tvepisode){ //
@@ -36,6 +37,9 @@ export default new Vuex.Store({
     },
     postAddCharacter(state, addName){
       state.characters = addName
+    },
+    OneCharacter(state, onecharacter){
+      state.setonecharacter = onecharacter
     }
     
   },
@@ -49,7 +53,7 @@ export default new Vuex.Store({
         
       })
     },
-    fetchUsers({ commit }){ /**Charcaters */
+    fetchUsers({ commit }){ /**Characters */
       fetch('https://rickandmortyapi.com/api/character')
       .then(response => response.json())
       .then(response => {
@@ -95,6 +99,14 @@ export default new Vuex.Store({
       .then(response => {        
         commit('postAddCharacter', response.results)
       })//añadir metodo Post
+    },  
+    fetchOneCharacter({ commit }){
+      fetch(`https://rickandmortyapi.com/api/character/${id}`)
+      .then(response => response.json())
+      .then(response => {   
+
+        commit('OneCharacter', response.results)
+      })//detalles de personajes
     },  
   },
   modules: {

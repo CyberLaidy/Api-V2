@@ -9,6 +9,7 @@
       flat>
         <v-tab to="/" style="text-decoration: none;">Home</v-tab>
         <v-tab to="/details" style="text-decoration: none;">Details</v-tab>
+        <v-tab to="/more" style="text-decoration: none;">More</v-tab>
         <v-tab to="/episodes" style="text-decoration: none;">Episodes</v-tab>
         <v-tab to="/locations" style="text-decoration: none;">Locations</v-tab>
         <v-tab to="/add" style="text-decoration: none;">Add</v-tab>
