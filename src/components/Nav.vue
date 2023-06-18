@@ -2,37 +2,23 @@
 <template>
     <div class="menu">
       <v-tabs
-      fixed-tabs
       background-color="#ececec"
-      color="000000">
-        <v-tab>
-          <RouterLink to="/" style="text-decoration: none;">Home</RouterLink>
-        </v-tab>
-        <v-tab>
-          <router-link to="/details" style="text-decoration: none;">Details</router-link>
-        </v-tab>
-        <v-tab>
-          <router-link to="/episodes" style="text-decoration: none;">Episodes</router-link>
-        </v-tab>
-        <v-tab>
-          <router-link to="/locations" style="text-decoration: none;">Locations</router-link>
-        </v-tab>
-        <v-tab>
-          <router-link to="/add" style="text-decoration: none;">Add</router-link>
-        </v-tab>
-        <v-tab>
-          <router-link to="/search" style="text-decoration: none;">Search</router-link>
-        </v-tab>
-
-        
+      color="black"
+      slider-color="#00ff5e"
+      grow 
+      flat>
+        <v-tab to="/" style="text-decoration: none;">Home</v-tab>
+        <v-tab to="/details" style="text-decoration: none;">Details</v-tab>
+        <v-tab to="/episodes" style="text-decoration: none;">Episodes</v-tab>
+        <v-tab to="/locations" style="text-decoration: none;">Locations</v-tab>
+        <v-tab to="/add" style="text-decoration: none;">Add</v-tab>
+        <v-tab to="/search" style="text-decoration: none;">Search</v-tab>
       </v-tabs>
     </div>
-
 </template>
 
-<script>
 
-//import { useRouter } from 'vue-router';
+<script>
 import router from "@/router";
 import { RouterLink, RouterView } from "vue-router";
 
@@ -45,19 +31,30 @@ export default {
 
 <style>
 
-.menu .router-link-active{
-  color: #000000;
-  background-color: rgb(0, 255, 94);
-  padding: 10px;
-  font-weight: 600;
-  text-decoration: none !important;
-  border-radius: 20px;
-  padding-left: 40px;
-  padding-right: 40px;
-}
 .menu{
   height: 60px;
   font-family: system-ui;
 }
 
 </style>
+
+        
+        
+<!-- <v-tab > Cambiamos el menu [flat -> linea | grow -> ocupar espacio]
+  <router-link to="/" style="text-decoration: none;">Home</router-link>
+</v-tab>
+<v-tab>
+  <router-link to="/details" style="text-decoration: none;">Details</router-link>
+</v-tab>
+<v-tab>
+  <router-link to="/episodes" style="text-decoration: none;">Episodes</router-link>
+</v-tab>
+<v-tab>
+  <router-link to="/locations" style="text-decoration: none;">Locations</router-link>
+</v-tab>
+<v-tab>
+  <router-link to="/add" style="text-decoration: none;">Add</router-link>
+</v-tab>
+<v-tab>
+  <router-link to="/search" style="text-decoration: none;">Search</router-link>
+</v-tab> -->

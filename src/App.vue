@@ -18,7 +18,7 @@ import Header from './components/Header.vue';
 import HomeView from './views/HomeView.vue';
 import Nav from './components/Nav.vue';
 import Footer from './components/Footer.vue';
-import { RouterView } from 'vue-router';
+import { RouterView } from 'vue-router';  
 import BtnDialog from './components/BtnDialog.vue';
 import Details from './views/Details.vue';
 import Create from './views/Create.vue';

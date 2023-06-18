@@ -4,11 +4,6 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
  const routes = [
-  /* {
-    path: ' ',
-    name: 'home',
-    component: ()=>import('@/views/HomeView.vue')
-  }, */
   {
     path: '/',
     name: 'home',
@@ -75,7 +70,8 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
-  linkActiveClass: 'router-link-active'
+  linkActiveClass: 'router-link-active',
+
 })
 
 export default router
